@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BD Honours Students Book Cave</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a6b3c;
+    --green-light: #e8f5ee;
+    --red: #c0392b;
+    --gold: #d4a017;
+    --gold-light: #fdf6e3;
+    --dark: #1a1a2e;
+    --card-bg: #ffffff;
+    --bg: #f5f7f5;
+    --text: #1a1a2e;
+    --muted: #5a6472;
+    --border: rgba(26,107,60,0.18);
+    --shadow: 0 4px 24px rgba(26,107,60,0.10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Hind Siliguri', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0d3d23 0%, #1a6b3c 60%, #145e32 100%);
+    color: white;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--gold);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 4px 14px rgba(212,160,23,0.35);
+  }
+
+  .logo-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.3px;
+  }
+
+  .logo-text span {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .flag-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    gap: 0;
+    padding: 0 36px;
+    overflow-x: auto;
+  }
+
+  nav a {
+    color: rgba(255,255,255,0.78);
+    text-decoration: none;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 2.5px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  nav a:hover, nav a.active {
+    color: #fff;
+    border-bottom-color: var(--gold);
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #0d3d23 0%, #1a6b3c 100%);
+    color: white;
+    padding: 56px 36px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(212,160,23,0.08);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h2 span { color: var(--gold); }
+
+  .hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    max-width: 560px;
+    margin: 0 auto 28px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  .search-bar {
+    display: flex;
+    max-width: 540px;
+    margin: 0 auto;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+  }
+
+  .search-bar input {
+    flex: 1;
+    padding: 16px 20px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    font-family: 'Hind Siliguri', sans-serif;
+    background: #fff;
+    color: var(--dark);
+  }
+
+  .search-bar button {
+    background: var(--gold);
+    color: #1a1a00;
+    border: none;
+    padding: 0 28px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Hind Siliguri', sans-serif;
+    transition: background 0.2s;
+  }
+
+  .search-bar button:hover { background: #b8880f; }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    margin-top: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* MAIN */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dark);
+    margin: 40px 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--green), transparent);
+    border-radius: 2px;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  /* DEPARTMENT GRID */
+  .dept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .dept-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dept-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    transform: scaleX(0);
+    transition: transform 0.25s;
+    transform-origin: left;
+  }
+
+  .dept-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(26,107,60,0.18);
+    border-color: var(--green);
+  }
+
+  .dept-card:hover::before { transform: scaleX(1); }
+
+  .dept-icon {
+    font-size: 34px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .dept-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--dark);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .dept-count {
+    font-size: 12px;
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  /* BOOKS SECTION */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .book-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(26,107,60,0.18);
+  }
+
+  .book-cover {
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px;
+    position: relative;
+  }
+
+  .book-body {
+    padding: 14px 16px;
+  }
+
+  .book-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .tag-green { background: var(--green-light); color: var(--green); }
+  .tag-gold { background: var(--gold-light); color: #7a5500; }
+  .tag-red { background: #fdecea; color: var(--red); }
+
+  .book-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--dark);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  .book-author {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .book-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-read {
+    flex: 1;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 0;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Hind Siliguri', sans-serif;
+    transition: background 0.2s;
+  }
+
+  .btn-read:hover { background: #145e32; }
+
+  .btn-dl {
+    background: var(--gold-light);
+    color: #7a5500;
+    border: 1.5px solid var(--gold);
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Hind Siliguri', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .btn-dl:hover { background: var(--gold); color: #fff; }
+
+  /* SUGGESTION SECTION */
+  .suggestion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .suggestion-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--green);
+  }
+
+  .sug-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .sug-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--dark);
+    line-height: 1.3;
+    flex: 1;
+  }
+
+  .sug-year {
+    background: var(--green-light);
+    color: var(--green);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-left: 8px;
+  }
+
+  .question-list {
+    list-style: none;
+    margin-bottom: 14px;
+  }
+
+  .question-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-size: 13.5px;
+    color: var(--text);
+    cursor: pointer;
+    transition: color 0.15s;
+    line-height: 1.4;
+  }
+
+  .question-list li:hover { color: var(--green); }
+
+  .question-list li span {
+    color: var(--green);
+    font-weight: 600;
+    margin-right: 6px;
+    font-size: 12px;
+  }
+
+  .answer-box {
+    background: var(--green-light);
+    border-left: 3px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #1a4a2e;
+    line-height: 1.6;
+    margin: 6px 0 10px;
+    display: none;
+  }
+
+  .answer-box.visible { display: block; }
+
+  .dl-suggestion {
+    width: 100%;
+    background: linear-gradient(135deg, var(--green), #145e32);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 0;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Hind Siliguri', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(26,107,60,0.25);
+  }
+
+  .dl-suggestion:hover {
+    background: linear-gradient(135deg, #145e32, #0d3d23);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(26,107,60,0.35);
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: white;
+    border-radius: 20px;
+    max-width: 580px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, #0d3d23, #1a6b3c);
+    color: white;
+    padding: 24px 28px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .modal-close {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover { background: rgba(255,255,255,0.35); }
+
+  .modal-body {
+    padding: 24px 28px;
+  }
+
+  .modal-body p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .modal-dl-btn {
+    width: 100%;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Hind Siliguri', sans-serif;
+    transition: background 0.2s;
+  }
+
+  .modal-dl-btn:hover { background: #145e32; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.7);
+    padding: 36px;
+    margin-top: 64px;
+    text-align: center;
+  }
+
+  footer h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  footer p { font-size: 13px; line-height: 1.7; }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .notice {
+    background: linear-gradient(135deg, #fff8e1, #fffde7);
+    border: 1.5px solid var(--gold);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: #5a4000;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .header-top { padding: 12px 16px; }
+    nav { padding: 0 8px; }
+    .hero { padding: 36px 16px 32px; }
+    .hero h2 { font-size: 26px; }
+    main { padding: 0 12px; }
+    .hero-stats { gap: 20px; }
+    .stat-num { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="logo-area">
+      <div class="logo-icon">📚</div>
+      <div class="logo-text">
+        <h1>BD Honours Students<br>Book Cave</h1>
+        <span>বাংলাদেশ অনার্স বুক সংগ্রহ</span>
+      </div>
+    </div>
+    <div class="flag-badge">🇧🇩 Bangladesh</div>
+  </div>
+  <nav>
+    <a class="active" onclick="showPage('home', this)">🏠 Home</a>
+    <a onclick="showPage('departments', this)">🎓 Departments</a>
+    <a onclick="showPage('books', this)">📖 Books & PDFs</a>
+    <a onclick="showPage('suggestions', this)">📝 Suggestions & Q&A</a>
+    <a onclick="showPage('previousq', this)">📋 Previous Questions</a>
+    <a onclick="showPage('about', this)">ℹ️ About</a>
+  </nav>
+</header>
+
+<!-- HOME PAGE -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <h2>🇧🇩 Welcome to <span>Book Cave</span></h2>
+    <p>Bangladesh's most complete free resource platform for Honours-level students — books, PDFs, suggestions, and previous year Q&A with answers, all in one place.</p>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search books, subjects, departments..." />
+      <button onclick="doSearch()">🔍 Search</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">1,200+</div><div class="stat-label">PDF Books</div></div>
+      <div class="stat"><div class="stat-num">34</div><div class="stat-label">Departments</div></div>
+      <div class="stat"><div class="stat-num">800+</div><div class="stat-label">Q&A Solved</div></div>
+      <div class="stat"><div class="stat-num">Free</div><div class="stat-label">Always</div></div>
+    </div>
+  </div>
+
+  <main>
+    <div class="section-title">🎓 Browse Departments</div>
+    <div class="section-sub">Choose your department to find all related textbooks, notes, and study materials</div>
+
+    <div class="dept-grid">
+      <div class="dept-card" onclick="filterBooks('bangla')">
+        <span class="dept-icon">📜</span>
+        <div class="dept-name">Bangla (বাংলা)</div>
+        <div class="dept-count">85 books • 40 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('english')">
+        <span class="dept-icon">🔤</span>
+        <div class="dept-name">English</div>
+        <div class="dept-count">72 books • 35 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('history')">
+        <span class="dept-icon">🏛️</span>
+        <div class="dept-name">History (ইতিহাস)</div>
+        <div class="dept-count">68 books • 38 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('politics')">
+        <span class="dept-icon">⚖️</span>
+        <div class="dept-name">Political Science</div>
+        <div class="dept-count">55 books • 30 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('economics')">
+        <span class="dept-icon">📊</span>
+        <div class="dept-name">Economics (অর্থনীতি)</div>
+        <div class="dept-count">90 books • 45 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('sociology')">
+        <span class="dept-icon">👥</span>
+        <div class="dept-name">Sociology (সমাজবিজ্ঞান)</div>
+        <div class="dept-count">48 books • 28 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('philosophy')">
+        <span class="dept-icon">🤔</span>
+        <div class="dept-name">Philosophy (দর্শন)</div>
+        <div class="dept-count">44 books • 22 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('islamicstudies')">
+        <span class="dept-icon">🕌</span>
+        <div class="dept-name">Islamic Studies</div>
+        <div class="dept-count">60 books • 32 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('accounting')">
+        <span class="dept-icon">🧾</span>
+        <div class="dept-name">Accounting (হিসাববিজ্ঞান)</div>
+        <div class="dept-count">78 books • 40 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('management')">
+        <span class="dept-icon">💼</span>
+        <div class="dept-name">Management</div>
+        <div class="dept-count">65 books • 36 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('marketing')">
+        <span class="dept-icon">📣</span>
+        <div class="dept-name">Marketing (বিপণন)</div>
+        <div class="dept-count">52 books • 28 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('math')">
+        <span class="dept-icon">📐</span>
+        <div class="dept-name">Mathematics (গণিত)</div>
+        <div class="dept-count">80 books • 50 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('physics')">
+        <span class="dept-icon">⚛️</span>
+        <div class="dept-name">Physics (পদার্থবিজ্ঞান)</div>
+        <div class="dept-count">75 books • 45 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('chemistry')">
+        <span class="dept-icon">🧪</span>
+        <div class="dept-name">Chemistry (রসায়ন)</div>
+        <div class="dept-count">70 books • 42 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('botany')">
+        <span class="dept-icon">🌿</span>
+        <div class="dept-name">Botany (উদ্ভিদবিজ্ঞান)</div>
+        <div class="dept-count">55 books • 30 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('zoology')">
+        <span class="dept-icon">🦋</span>
+        <div class="dept-name">Zoology (প্রাণিবিজ্ঞান)</div>
+        <div class="dept-count">58 books • 32 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('geography')">
+        <span class="dept-icon">🗺️</span>
+        <div class="dept-name">Geography (ভূগোল)</div>
+        <div class="dept-count">46 books • 25 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('psychology')">
+        <span class="dept-icon">🧠</span>
+        <div class="dept-name">Psychology (মনোবিজ্ঞান)</div>
+        <div class="dept-count">50 books • 28 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('law')">
+        <span class="dept-icon">⚖️</span>
+        <div class="dept-name">Law (আইন)</div>
+        <div class="dept-count">62 books • 38 Q-sets</div>
+      </div>
+      <div class="dept-card" onclick="filterBooks('social-welfare')">
+        <span class="dept-icon">🤝</span>
+        <div class="dept-name">Social Welfare</div>
+        <div class="dept-count">40 books • 20 Q-sets</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- BOOKS PAGE -->
+<div id="page-books" class="page">
+  <div class="hero" style="padding:36px 36px 30px;">
+    <h2>📖 Books & <span>PDF Library</span></h2>
+    <p>Download textbooks, reference books, and study materials for all Honours departments</p>
+  </div>
+  <main>
+    <div class="notice">
+      ⚠️ <div>All PDFs here are for educational use only. These are collected from publicly available sources to help Bangladeshi Honours students. If you are a publisher and want a book removed, please <strong>contact us</strong>.</div>
+    </div>
+
+    <div class="section-title">📚 Featured Books</div>
+    <div class="section-sub">Most downloaded books across all departments</div>
+
+    <div class="books-grid">
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#e8f5ee,#c8e6c9)">📘</div>
+        <div class="book-body">
+          <span class="book-tag tag-green">Economics • 1st Year</span>
+          <div class="book-title">সামষ্টিক অর্থনীতি — Macro Economics</div>
+          <div class="book-author">Dr. M.A. Baqui Khalily | Nu Syllabus 2023</div>
+          <div class="book-actions">
+            <button class="btn-read" onclick="openModal('Samastik Orthoniti PDF', 'Macro Economics for Honours 1st Year — National University Bangladesh. Covers national income, inflation, monetary policy, fiscal policy, and international trade. 380 pages.')">👁 Read</button>
+            <button class="btn-dl" onclick="downloadBook('macro-economics-honours-bd.pdf')">⬇ PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#fdf6e3,#fff9c4)">📗</div>
+        <div class="book-body">
+          <span class="book-tag tag-gold">Bangla • 2nd Year</span>
+          <div class="book-title">বাংলা সাহিত্যের ইতিহাস (আধুনিক যুগ)</div>
+          <div class="book-author">ড. মোহাম্মদ আব্দুল কাইউম | NU 2023</div>
+          <div class="book-actions">
+            <button class="btn-read" onclick="openModal('Bangla Sahityer Itihas', 'History of Bengali Literature — Modern Period. Covers from 19th century to present. Required for Honours 2nd Year Bangla Department. 420 pages.')">👁 Read</button>
+            <button class="btn-dl" onclick="downloadBook('bangla-sahityer-itihas-2nd-year.pdf')">⬇ PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#fdecea,#ffcdd2)">📕</div>
+        <div class="book-body">
+          <span class="book-tag tag-red">Accounting • 3rd Year</span>
+          <div class="book-title">Financial Accounting (উচ্চতর হিসাববিজ্ঞান)</div>
+          <div class="book-author">Prof. Mofazzal Hossain | NU Syllabus</div>
+          <div class="book-actions">
+            <button class="btn-read" onclick="openModal('Financial Accounting Honours', 'Advanced Financial Accounting for Honours 3rd Year. Covers partnership accounts, company accounts, cash flow statements, and ratio analysis. 510 pages.')">👁 Read</button>
+            <button class="btn-dl" onclick="downloadBook('financial-accounting-3rd-year-bd.pdf')">⬇ PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#e8eaf6,#c5cae9)">📙</div>
+        <div class="book-body">
+          <span class="book-tag tag-green">Political Science • 1st Year</span>
+          <div class="book-title">রাজনৈতিক তত্ত্ব ও রাষ্ট্রবিজ্ঞান</div>
+          <div class="book-author">ড. তারেক শামসুর রেহমান | NU 2023</div>
+          <div class="book-actions">
+            <button class="btn-read" onclick="openModal('Political Theory BD', 'Political Theory and Political Science for Honours 1st Year. Covers state, sovereignty, democracy, political ideologies. 340 pages.')">👁 Read</button>
+            <button class="btn-dl" onclick="downloadBook('political-theory-1st-year.pdf')">⬇ PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#e0f7fa,#b2ebf2)">📓</div>
+        <div class="book-body">
+          <span class="book-tag tag-gold">Physics • 2nd Year</span>
+          <div class="book-title">তাপগতিবিদ্যা ও পরিসংখ্যানিক বলবিজ্ঞান</div>
+          <div class="book-author">Prof. A.K.M. Rezaul Haque | NU</div>
+          <div class="book-actions">
+            <button class="btn-read" onclick="openModal('Thermodynamics BD', 'Thermodynamics and Statistical Mechanics for Honours 2nd Year Physics. Full NU syllabus coverage. 460 pages.')">👁 Read</button>
+            <button class="btn-dl" onclick="downloadBook('thermodynamics-2nd-year-physics.pdf')">⬇ PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7)">📒</div>
+        <div class="book-body">
+          <span class="book-tag tag-red">Islamic Studies • All Years</span>
+          <div class="book-title">ইসলামের ইতিহাস ও সংস্কৃতি</div>
+          <div class="book-author">ড. আবু মুসা মোহাম্মদ আরিফ বিল্লাহ</div>
+          <div class="book-actions">
+            <button class="btn-read" onclick="openModal('Islamic History BD', 'History and Culture of Islam for Honours programme. Covers Islamic civilization, caliphates, and cultural contributions. 390 pages.')">👁 Read</button>
+            <button class="btn-dl" onclick="downloadBook('islamic-history-honours-bd.pdf')">⬇ PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- SUGGESTIONS PAGE -->
+<div id="page-suggestions" class="page">
+  <div class="hero" style="padding:36px 36px 30px;">
+    <h2>📝 Suggestion Sheets & <span>Q&A</span></h2>
+    <p>Exam suggestions with detailed answers — click any question to see the answer. Download full suggestion sheets below each set.</p>
+  </div>
+  <main>
+    <div class="section-title">📝 Department-wise Suggestions</div>
+    <div class="section-sub">Click questions to reveal answers. Download the full suggestion sheet as PDF.</div>
+
+    <div class="suggestion-grid">
+
+      <div class="suggestion-card">
+        <div class="sug-header">
+          <div class="sug-title">📊 Economics — Final Suggestion</div>
+          <span class="sug-year">2024</span>
+        </div>
+        <ul class="question-list">
+          <li onclick="toggleAnswer(this)"><span>Q1.</span> জাতীয় আয় পরিমাপের পদ্ধতিসমূহ আলোচনা করো।
+            <div class="answer-box">জাতীয় আয় পরিমাপের তিনটি প্রধান পদ্ধতি রয়েছে: (১) উৎপাদন পদ্ধতি — সমস্ত পণ্য ও সেবার মোট বাজারমূল্য। (২) আয় পদ্ধতি — মজুরি + মুনাফা + সুদ + খাজনার সমষ্টি। (৩) ব্যয় পদ্ধতি — C + I + G + (X-M)। বাংলাদেশে BBS এই তিনটি পদ্ধতি ব্যবহার করে GDP নির্ধারণ করে।</div>
+          </li>
+          <li onclick="toggleAnswer(this)"><span>Q2.</span> মুদ্রাস্ফীতি কী? মুদ্রাস্ফীতির কারণ ও প্রতিকার লিখো।
+            <div class="answer-box">মুদ্রাস্ফীতি হলো সামগ্রিক মূল্যস্তরের ক্রমাগত বৃদ্ধি। কারণ: (১) চাহিদা-টান মুদ্রাস্ফীতি — অতিরিক্ত মুদ্রা সরবরাহ, (২) ব্যয়-ঠেলা মুদ্রাস্ফীতি — উৎপাদন ব্যয় বৃদ্ধি। প্রতিকার: মুদ্রানীতি কঠোর করা, রাজস্ব নীতি সংকোচন, সুদের হার বৃদ্ধি।</div>
+          </li>
+          <li onclick="toggleAnswer(this)"><span>Q3.</span> ভোক্তার উদ্বৃত্ত কী? চিত্রসহ ব্যাখ্যা করো।
+            <div class="answer-box">ভোক্তার উদ্বৃত্ত হলো একজন ভোক্তা কোনো পণ্যের জন্য যে সর্বোচ্চ মূল্য দিতে রাজি, এবং প্রকৃতপক্ষে যা দেয়, তার মধ্যকার পার্থক্য। Alfred Marshall এই ধারণা প্রদান করেন। CS = Willingness to Pay − Actual Price। চাহিদা রেখার নিচে ও বাজারমূল্যের উপরে ত্রিভুজাকার ক্ষেত্রফল ভোক্তার উদ্বৃত্ত নির্দেশ করে।</div>
+          </li>
+        </ul>
+        <button class="dl-suggestion" onclick="downloadSuggestion('economics-2024-suggestion.pdf', 'Economics 2024 Suggestion Sheet')">⬇ Download Economics Suggestion PDF</button>
+      </div>
+
+      <div class="suggestion-card" style="border-left-color:#c0392b;">
+        <div class="sug-header">
+          <div class="sug-title">📜 Bangla — Final Suggestion</div>
+          <span class="sug-year">2024</span>
+        </div>
+        <ul class="question-list">
+          <li onclick="toggleAnswer(this)"><span>Q1.</span> রবীন্দ্রনাথ ঠাকুরের কবিতায় প্রকৃতিচেতনা আলোচনা করো।
+            <div class="answer-box">রবীন্দ্রনাথের কবিতায় প্রকৃতি মানবজীবনের অবিচ্ছেদ্য অঙ্গ। তাঁর কাছে প্রকৃতি শুধু পটভূমি নয়, বরং একটি সক্রিয় চরিত্র। গীতাঞ্জলি, সোনার তরী, মানসী ইত্যাদি কাব্যগ্রন্থে প্রকৃতির মধ্যে তিনি ঈশ্বরের উপস্থিতি অনুভব করেছেন। প্রকৃতি ও মানুষের মিলনেই তাঁর দর্শন প্রতিষ্ঠিত।</div>
+          </li>
+          <li onclick="toggleAnswer(this)"><span>Q2.</span> মাইকেল মধুসূদন দত্তের নাটকের বৈশিষ্ট্য লিখো।
+            <div class="answer-box">মধুসূদনের নাটকে পাশ্চাত্য নাট্যশৈলীর প্রভাব স্পষ্ট। তাঁর শর্মিষ্ঠা, পদ্মাবতী, কৃষ্ণকুমারী নাটকে গ্রিক ট্র্যাজেডির অনুসরণ দেখা যায়। বাংলা নাটকে প্রথম অমিত্রাক্ষর ছন্দ ব্যবহার এবং ঐতিহাসিক বিষয়বস্তু গ্রহণ তাঁর বিশেষ কৃতিত্ব।</div>
+          </li>
+          <li onclick="toggleAnswer(this)"><span>Q3.</span> বাংলা সনেটের উদ্ভব ও বিকাশ আলোচনা করো।
+            <div class="answer-box">বাংলা সনেটের জনক মাইকেল মধুসূদন দত্ত। ১৮৬৬ সালে তাঁর "চতুর্দশপদী কবিতাবলী" প্রকাশিত হয়। ইটালিয়ান পেত্রার্কান সনেটের অনুসরণে তিনি বাংলা সনেট রচনা করেন। পরবর্তীতে রবীন্দ্রনাথ, যতীন্দ্রনাথ সেনগুপ্ত প্রমুখ সনেট রচনায় অবদান রাখেন।</div>
+          </li>
+        </ul>
+        <button class="dl-suggestion" onclick="downloadSuggestion('bangla-2024-suggestion.pdf', 'Bangla 2024 Suggestion Sheet')" style="background:linear-gradient(135deg,#c0392b,#922b21);">⬇ Download Bangla Suggestion PDF</button>
+      </div>
+
+      <div class="suggestion-card" style="border-left-color:#d4a017;">
+        <div class="sug-header">
+          <div class="sug-title">🧾 Accounting — Final Suggestion</div>
+          <span class="sug-year">2024</span>
+        </div>
+        <ul class="question-list">
+          <li onclick="toggleAnswer(this)"><span>Q1.</span> অংশীদারি ব্যবসার দায় কীভাবে বণ্টন করা হয়?
+            <div class="answer-box">অংশীদারি ব্যবসায় দায় বণ্টনের ক্ষেত্রে: (১) চুক্তি থাকলে — চুক্তি অনুযায়ী মুনাফা ও ক্ষতি বণ্টিত হয়। (২) চুক্তি না থাকলে — Partnership Act 1932 অনুযায়ী সমান হারে বণ্টিত হয়। প্রতিটি অংশীদার ব্যবসার ঋণের জন্য যৌথভাবে ও পৃথকভাবে দায়ী।</div>
+          </li>
+          <li onclick="toggleAnswer(this)"><span>Q2.</span> নগদ প্রবাহ বিবরণী কী এবং এর গুরুত্ব আলোচনা করো।
+            <div class="answer-box">নগদ প্রবাহ বিবরণী (Cash Flow Statement) একটি আর্থিক বিবরণী যা নির্দিষ্ট সময়ে নগদ আগমন ও নির্গমন দেখায়। এটি তিন ভাগে বিভক্ত: পরিচালন কার্যক্রম, বিনিয়োগ কার্যক্রম ও অর্থায়ন কার্যক্রম। IAS-7 অনুযায়ী প্রতিটি কোম্পানিকে এটি প্রকাশ করতে হয়।</div>
+          </li>
+          <li onclick="toggleAnswer(this)"><span>Q3.</span> অনুপাত বিশ্লেষণ কী? বিভিন্ন প্রকার অনুপাত আলোচনা করো।
+            <div class="answer-box">অনুপাত বিশ্লেষণ হলো আর্থিক বিবরণীর দুটি সংখ্যার মধ্যে গাণিতিক সম্পর্ক নির্ণয়। প্রকারভেদ: (১) তারল্য অনুপাত (Current Ratio, Quick Ratio), (২) মুনাফাজনকতা অনুপাত (ROE, ROA), (৩) ঋণ অনুপাত (Debt-Equity Ratio), (৪) কার্যকারিতা অনুপাত (Inventory Turnover)।</div>
+          </li>
+        </ul>
+        <button class="dl-suggestion" onclick="downloadSuggestion('accounting-2024-suggestion.pdf', 'Accounting 2024 Suggestion Sheet')" style="background:linear-gradient(135deg,#d4a017,#b8880f);">⬇ Download Accounting Suggestion PDF</button>
+      </div>
+
+      <div class="suggestion-card" style="border-left-color:#2980b9;">
+        <div class="sug-header">
+          <div class="sug-title">🏛️ History — Final Suggestion</div>
+          <span class="sug-year">2024</span>
+        </div>
+        <ul class="question-list">
+          <li onclick="toggleAnswer(this)"><span>Q1.</span> বাংলাদেশের মুক্তিযুদ্ধের কারণ ও তাৎপর্য আলোচনা করো।
+            <div class="answer-box">১৯৭১ সালের মুক্তিযুদ্ধের কারণ: ভাষা আন্দোলন (১৯৫২), রাজনৈতিক বৈষম্য, অর্থনৈতিক শোষণ, ১৯৭০ এর নির্বাচনে আওয়ামী লীগের বিজয় অস্বীকার, ২৫ মার্চের গণহত্যা। তাৎপর্য: একটি স্বাধীন বাংলাদেশ রাষ্ট্রের জন্ম, বাঙালি জাতীয়তাবাদের প্রতিষ্ঠা।</div>
+          </li>
+          <li onclick="toggleAnswer(this)"><span>Q2.</span> পলাশীর যুদ্ধের কারণ ও ফলাফল বর্ণনা করো।
+            <div class="answer-box">পলাশীর যুদ্ধ (১৭৫৭): কারণ — সিরাজউদ্দৌলার সাথে ব্রিটিশ ইস্ট ইন্ডিয়া কোম্পানির সংঘর্ষ, মীরজাফরের বিশ্বাসঘাতকতা। ফলাফল — বাংলায় ব্রিটিশ আধিপত্য প্রতিষ্ঠা, বাংলার স্বাধীনতার অবসান, ঔপনিবেশিক শাসনের সূচনা।</div>
+          </li>
+        </ul>
+        <button class="dl-suggestion" onclick="downloadSuggestion('history-2024-suggestion.pdf', 'History 2024 Suggestion Sheet')" style="background:linear-gradient(135deg,#2980b9,#1a5c8a);">⬇ Download History Suggestion PDF</button>
+      </div>
+
+      <div class="suggestion-card" style="border-left-color:#8e44ad;">
+        <div class="sug-header">
+          <div class="sug-title">🧠 Psychology — Final Suggestion</div>
+          <span class="sug-year">2024</span>
+        </div>
+        <ul class="question-list">
+          <li onclick="toggleAnswer(this)"><span>Q1.</span> ফ্রয়েডের মনোবিশ্লেষণ তত্ত্ব আলোচনা করো।
+            <div class="answer-box">সিগমুন্ড ফ্রয়েডের মনোবিশ্লেষণ তত্ত্বে মন তিন স্তরবিশিষ্ট: সচেতন (Conscious), অর্ধসচেতন (Pre-conscious), অচেতন (Unconscious)। ব্যক্তিত্বের তিনটি কাঠামো: Id (আদিম প্রবৃত্তি), Ego (বাস্তবতা নীতি), Super-ego (নৈতিকতা)। মনের দ্বন্দ্বই মানসিক সমস্যার কারণ।</div>
+          </li>
+          <li onclick="toggleAnswer(this)"><span>Q2.</span> স্মৃতি কী? স্মৃতির প্রকারভেদ আলোচনা করো।
+            <div class="answer-box">স্মৃতি (Memory) হলো অতীত অভিজ্ঞতা ধারণ ও পুনরুদ্ধারের মানসিক ক্রিয়া। প্রকারভেদ: (১) সংবেদনশীল স্মৃতি (Sensory Memory) — খুব সংক্ষিপ্তকালীন। (২) স্বল্পমেয়াদি স্মৃতি (STM) — ২০-৩০ সেকেন্ড। (৩) দীর্ঘমেয়াদি স্মৃতি (LTM) — স্থায়ী সংরক্ষণ। Atkinson ও Shiffrin এর মডেল।</div>
+          </li>
+        </ul>
+        <button class="dl-suggestion" onclick="downloadSuggestion('psychology-2024-suggestion.pdf', 'Psychology 2024 Suggestion Sheet')" style="background:linear-gradient(135deg,#8e44ad,#6c3483);">⬇ Download Psychology Suggestion PDF</button>
+      </div>
+
+      <div class="suggestion-card" style="border-left-color:#16a085;">
+        <div class="sug-header">
+          <div class="sug-title">⚛️ Physics — Final Suggestion</div>
+          <span class="sug-year">2024</span>
+        </div>
+        <ul class="question-list">
+          <li onclick="toggleAnswer(this)"><span>Q1.</span> তাপগতির প্রথম সূত্র ও এর প্রয়োগ আলোচনা করো।
+            <div class="answer-box">তাপগতির প্রথম সূত্র হলো শক্তির নিত্যতার নীতির বিশেষ রূপ। Q = ΔU + W, যেখানে Q = সরবরাহকৃত তাপ, ΔU = অভ্যন্তরীণ শক্তির পরিবর্তন, W = কৃতকার্য। এটি প্রমাণ করে যে তাপ ও কাজ উভয়ই শক্তির রূপ। প্রয়োগ: তাপযন্ত্র, রেফ্রিজারেটর।</div>
+          </li>
+          <li onclick="toggleAnswer(this)"><span>Q2.</span> বোহরের পরমাণু মডেল আলোচনা করো।
+            <div class="answer-box">নিলস বোহর ১৯১৩ সালে হাইড্রোজেন পরমাণুর মডেল প্রস্তাব করেন। মূল বক্তব্য: (১) ইলেকট্রন নির্দিষ্ট কক্ষপথে ঘোরে। (২) নির্দিষ্ট কক্ষপথে শক্তি বিকিরণ হয় না। (৩) উচ্চ থেকে নিম্ন শক্তিস্তরে পতনে ফোটন নির্গত হয়। E = hν সূত্র প্রযোজ্য।</div>
+          </li>
+        </ul>
+        <button class="dl-suggestion" onclick="downloadSuggestion('physics-2024-suggestion.pdf', 'Physics 2024 Suggestion Sheet')" style="background:linear-gradient(135deg,#16a085,#0e6655);">⬇ Download Physics Suggestion PDF</button>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- PREVIOUS QUESTIONS PAGE -->
+<div id="page-previousq" class="page">
+  <div class="hero" style="padding:36px 36px 30px;">
+    <h2>📋 Previous Year <span>Question Papers</span></h2>
+    <p>National University Bangladesh — Previous question papers from 2015 to 2023, with answers</p>
+  </div>
+  <main>
+    <div class="section-title">📋 Previous Question Banks</div>
+    <div class="section-sub">Click to download full question papers with model answers</div>
+
+    <div class="books-grid">
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#e8f5ee,#c8e6c9)">📋</div>
+        <div class="book-body">
+          <span class="book-tag tag-green">Economics • 2015–2023</span>
+          <div class="book-title">অর্থনীতি বিভাগ — Previous Questions (সব বর্ষ)</div>
+          <div class="book-author">National University Bangladesh | All Years</div>
+          <div class="book-actions">
+            <button class="btn-read" onclick="openModal('Economics All Previous Questions', 'Complete collection of previous year questions for Economics Honours — 1st, 2nd, 3rd, and 4th year from 2015 to 2023. Includes model answers for all questions.')">👁 Preview</button>
+            <button class="btn-dl" onclick="downloadBook('economics-prev-questions-2015-2023.pdf')">⬇ PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#fdf6e3,#fff9c4)">📋</div>
+        <div class="book-body">
+          <span class="book-tag tag-gold">Bangla • 2015–2023</span>
+          <div class="book-title">বাংলা বিভাগ — পূর্ববর্তী প্রশ্নপত্র সংগ্রহ</div>
+          <div class="book-author">জাতীয় বিশ্ববিদ্যালয় | সব বর্ষ</div>
+          <div class="book-actions">
+            <button class="btn-read" onclick="openModal('Bangla All Previous Questions', 'সব বর্ষের বাংলা বিভাগের প্রশ্নপত্র — ২০১৫ থেকে ২০২৩। উত্তরসহ সম্পূর্ণ সংগ্রহ।')">👁 Preview</button>
+            <button class="btn-dl" onclick="downloadBook('bangla-prev-questions-all-year.pdf')">⬇ PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#fdecea,#ffcdd2)">📋</div>
+        <div class="book-body">
+          <span class="book-tag tag-red">Accounting • 2015–2023</span>
+          <div class="book-title">হিসাববিজ্ঞান — Previous Questions with Answers</div>
+          <div class="book-author">National University | All Years</div>
+          <div class="book-actions">
+            <button class="btn-read" onclick="openModal('Accounting Previous Questions', 'Complete accounting question bank with worked solutions for all years. Covers financial accounting, cost accounting, and auditing.')">👁 Preview</button>
+            <button class="btn-dl" onclick="downloadBook('accounting-prev-questions-solved.pdf')">⬇ PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb)">📋</div>
+        <div class="book-body">
+          <span class="book-tag tag-green">History • 2015–2023</span>
+          <div class="book-title">ইতিহাস বিভাগ — সম্পূর্ণ প্রশ্নব্যাংক</div>
+          <div class="book-author">জাতীয় বিশ্ববিদ্যালয় | সব বর্ষ</div>
+          <div class="book-actions">
+            <button class="btn-read" onclick="openModal('History Previous Questions', 'সব বর্ষের ইতিহাস বিভাগের প্রশ্নপত্র উত্তরসহ। বাংলাদেশের ইতিহাস, ভারতবর্ষের ইতিহাস, বিশ্ব ইতিহাস।')">👁 Preview</button>
+            <button class="btn-dl" onclick="downloadBook('history-prev-questions-all.pdf')">⬇ PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ABOUT PAGE -->
+<div id="page-about" class="page">
+  <div class="hero" style="padding:36px 36px 30px;">
+    <h2>ℹ️ About <span>Book Cave</span></h2>
+    <p>Our mission, vision, and how we help Bangladeshi Honours students</p>
+  </div>
+  <main>
+    <div style="max-width: 680px; margin: 40px auto; background: white; border-radius: 20px; padding: 36px; border: 1.5px solid var(--border); box-shadow: var(--shadow);">
+      <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--green); margin-bottom:16px;">🎯 Our Mission</h3>
+      <p style="color:var(--muted); line-height:1.8; margin-bottom:24px;">BD Honours Students Book Cave is a free educational platform dedicated to supporting National University Bangladesh students. We provide textbooks, PDFs, suggestion sheets, and previous year questions with answers — completely free of charge.</p>
+
+      <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--green); margin-bottom:16px;">📚 What We Offer</h3>
+      <ul style="color:var(--muted); line-height:2; padding-left:20px; margin-bottom:24px;">
+        <li>1,200+ PDF textbooks for all Honours departments</li>
+        <li>Subject-wise suggestion sheets with exam tips</li>
+        <li>Previous year questions (2015–2023) with model answers</li>
+        <li>Coverage for 34+ departments of National University Bangladesh</li>
+        <li>Free download for all resources</li>
+      </ul>
+
+      <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--green); margin-bottom:16px;">📞 Contact Us</h3>
+      <p style="color:var(--muted); line-height:1.8;">For book submissions, corrections, or removal requests, reach out to us. We are always open to contributions from students and teachers across Bangladesh.</p>
+
+      <div style="background:var(--green-light); border-radius:12px; padding:20px; margin-top:24px; text-align:center;">
+        <div style="font-size:28px; margin-bottom:8px;">🇧🇩</div>
+        <div style="font-family:'Playfair Display',serif; font-size:18px; color:var(--green); font-weight:700;">শিক্ষায় বিনিয়োগ করুন, দেশ গড়ুন</div>
+        <div style="color:var(--muted); font-size:13px; margin-top:4px;">Invest in education, build the nation</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- DEPARTMENTS PAGE -->
+<div id="page-departments" class="page">
+  <div class="hero" style="padding:36px 36px 30px;">
+    <h2>🎓 All <span>Departments</span></h2>
+    <p>Browse all 34 departments of National University Bangladesh Honours Programme</p>
+  </div>
+  <main>
+    <div class="section-title">🎓 All Departments</div>
+    <div class="dept-grid">
+      <div class="dept-card"><span class="dept-icon">📜</span><div class="dept-name">Bangla (বাংলা)</div><div class="dept-count">85 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🔤</span><div class="dept-name">English</div><div class="dept-count">72 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🏛️</span><div class="dept-name">History (ইতিহাস)</div><div class="dept-count">68 books</div></div>
+      <div class="dept-card"><span class="dept-icon">⚖️</span><div class="dept-name">Political Science</div><div class="dept-count">55 books</div></div>
+      <div class="dept-card"><span class="dept-icon">📊</span><div class="dept-name">Economics</div><div class="dept-count">90 books</div></div>
+      <div class="dept-card"><span class="dept-icon">👥</span><div class="dept-name">Sociology</div><div class="dept-count">48 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🤔</span><div class="dept-name">Philosophy</div><div class="dept-count">44 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🕌</span><div class="dept-name">Islamic Studies</div><div class="dept-count">60 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🧾</span><div class="dept-name">Accounting</div><div class="dept-count">78 books</div></div>
+      <div class="dept-card"><span class="dept-icon">💼</span><div class="dept-name">Management</div><div class="dept-count">65 books</div></div>
+      <div class="dept-card"><span class="dept-icon">📣</span><div class="dept-name">Marketing</div><div class="dept-count">52 books</div></div>
+      <div class="dept-card"><span class="dept-icon">📐</span><div class="dept-name">Mathematics</div><div class="dept-count">80 books</div></div>
+      <div class="dept-card"><span class="dept-icon">⚛️</span><div class="dept-name">Physics</div><div class="dept-count">75 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🧪</span><div class="dept-name">Chemistry</div><div class="dept-count">70 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🌿</span><div class="dept-name">Botany</div><div class="dept-count">55 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🦋</span><div class="dept-name">Zoology</div><div class="dept-count">58 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🗺️</span><div class="dept-name">Geography</div><div class="dept-count">46 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🧠</span><div class="dept-name">Psychology</div><div class="dept-count">50 books</div></div>
+      <div class="dept-card"><span class="dept-icon">⚖️</span><div class="dept-name">Law (আইন)</div><div class="dept-count">62 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🤝</span><div class="dept-name">Social Welfare</div><div class="dept-count">40 books</div></div>
+      <div class="dept-card"><span class="dept-icon">💻</span><div class="dept-name">Computer Science</div><div class="dept-count">55 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🏦</span><div class="dept-name">Finance & Banking</div><div class="dept-count">60 books</div></div>
+      <div class="dept-card"><span class="dept-icon">📱</span><div class="dept-name">Mass Communication</div><div class="dept-count">38 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🌏</span><div class="dept-name">Arabic</div><div class="dept-count">35 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🌐</span><div class="dept-name">Sanskrit</div><div class="dept-count">28 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🎨</span><div class="dept-name">Fine Arts (চারুকলা)</div><div class="dept-count">32 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🏃</span><div class="dept-name">Physical Education</div><div class="dept-count">24 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🌾</span><div class="dept-name">Agricultural Studies</div><div class="dept-count">42 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🏠</span><div class="dept-name">Home Economics</div><div class="dept-count">36 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🌎</span><div class="dept-name">International Relations</div><div class="dept-count">44 books</div></div>
+      <div class="dept-card"><span class="dept-icon">📉</span><div class="dept-name">Statistics (পরিসংখ্যান)</div><div class="dept-count">58 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🧬</span><div class="dept-name">Biochemistry</div><div class="dept-count">48 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🌊</span><div class="dept-name">Oceanography</div><div class="dept-count">30 books</div></div>
+      <div class="dept-card"><span class="dept-icon">🏛️</span><div class="dept-name">Public Administration</div><div class="dept-count">46 books</div></div>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Book Details</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p id="modalDesc"></p>
+      <div style="background:#f5f7f5; border-radius:12px; padding:16px; margin-bottom:20px;">
+        <div style="font-size:13px; color:var(--muted); margin-bottom:8px;">📌 Source: National University Bangladesh approved curriculum</div>
+        <div style="font-size:13px; color:var(--muted);">✅ Format: PDF • Free Download • Educational Use</div>
+      </div>
+      <button class="modal-dl-btn" onclick="closeModal()">⬇ Download PDF (Free)</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <h4>📚 BD Honours Students Book Cave</h4>
+  <p>বাংলাদেশের অনার্স শিক্ষার্থীদের জন্য সেরা বিনামূল্যে শিক্ষামূলক সম্পদ প্ল্যাটফর্ম</p>
+  <div class="footer-links">
+    <a href="#">Home</a>
+    <a href="#">Books</a>
+    <a href="#">Suggestions</a>
+    <a href="#">Previous Questions</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+  <p style="font-size:12px; margin-top:8px;">© 2024 BD Honours Students Book Cave • For Educational Use Only • 🇧🇩 Made for Bangladesh</p>
+</footer>
+
+<script>
+  function showPage(page, el) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    if (el) el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function filterBooks(dept) {
+    showPage('books', null);
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    document.querySelectorAll('nav a')[2].classList.add('active');
+  }
+
+  function doSearch() {
+    const val = document.getElementById('searchInput').value.trim();
+    if (val) {
+      showPage('books', null);
+      document.querySelectorAll('nav a')[2].classList.add('active');
+    }
+  }
+
+  document.getElementById('searchInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  function toggleAnswer(li) {
+    const box = li.querySelector('.answer-box');
+    if (!box) return;
+    const isVisible = box.classList.contains('visible');
+    document.querySelectorAll('.answer-box.visible').forEach(b => b.classList.remove('visible'));
+    if (!isVisible) box.classList.add('visible');
+  }
+
+  function openModal(title, desc) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalDesc').textContent = desc;
+    document.getElementById('modalOverlay').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function downloadBook(filename) {
+    alert('✅ Starting download: ' + filename + '\n\nIn the live version, this would download the actual PDF file from the server.');
+  }
+
+  function downloadSuggestion(filename, title) {
+    alert('✅ Downloading Suggestion Sheet:\n' + title + '\n\nFile: ' + filename + '\n\nIn the live version, this downloads the PDF directly from BD Honours Book Cave server.');
+  }
+</script>
+</body>
+</html>
